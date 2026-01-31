@@ -9,7 +9,7 @@ export const SOCIALS = [
   {
     name: "GitHub",
     icon: RxGithubLogo,
-    link: "https://github.com/victor-trapp/Antunes-Lab",
+    link: "https://github.com/victor-trapp/antunes-lab",
   },
   {
     name: "LinkedIn",

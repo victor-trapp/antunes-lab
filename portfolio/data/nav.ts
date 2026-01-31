@@ -13,6 +13,6 @@ export const NAV_LINKS = [
   },
   {
     title: "Source Code",
-    link: "https://github.com/victor-devops/Antunes-Lab",
+    link: "https://github.com/victor-trapp/antunes-lab",
   },
 ] as const;

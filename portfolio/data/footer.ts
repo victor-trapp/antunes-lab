@@ -12,7 +12,7 @@ export const FOOTER_DATA = [
       {
         name: "GitHub",
         icon: RxGithubLogo,
-        link: "https://github.com/victor-trapp/Antunes-Lab",
+        link: "https://github.com/victor-trapp/antunes-lab",
       },
       {
         name: "Discord",
@@ -42,7 +42,7 @@ export const FOOTER_DATA = [
       {
         name: "Learning about me",
         icon: null,
-        link: "https://github.com/victor-trapp/Antunes-Lab",
+        link: "https://github.com/victor-trapp/antunes-lab",
       },
       {
         name: "Contact Me",
