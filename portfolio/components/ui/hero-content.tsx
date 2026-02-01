@@ -13,7 +13,7 @@ export const HeroContent = () => {
       animate="visible"
       className="flex flex-col xl:flex-row items-center justify-center
   px-6 md:px-10 xl:px-20
-  pt-[100px] sm:pt-[145px] md:pt-[190px] xl:pt-[290px]
+  pt-[100px] sm:pt-[145px] md:pt-[190px] xl:pt-[180px]
   w-full z-[20] gap-12"
 
     >

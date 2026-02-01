@@ -20,16 +20,15 @@ export const metadata: Metadata = siteConfig;
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "overflow-y-scroll overflow-x-hidden",
-          inter.className
-        )}
-      >
+    <html lang="en" className="scroll-smooth scroll-pt-[80px]">
+      <body className={cn("overflow-y-scroll overflow-x-hidden", inter.className)}>
         <StarsCanvas />
         <Navbar />
-        {children}
+
+        <main className="pt-[80px]">
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>
