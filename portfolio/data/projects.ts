@@ -1,3 +1,13 @@
+export type ProjectItem = {
+  title: string;
+  description: string;
+  link: string;
+  ctaLabel: string;
+  secondaryLabel?: string;
+  secondaryLink?: string;
+  hidePrimaryCta?: boolean;
+};
+
 export const PROJECTS = [
   {
     title: "Calculator App",
@@ -19,4 +29,4 @@ export const PROJECTS = [
     secondaryLink:
       "https://github.com/victor-trapp/Antunes-Lab/tree/main/portfolio/app/finance",
   },
-] as const;
+] as const satisfies readonly ProjectItem[];

@@ -15,20 +15,13 @@ export const Projects = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {PROJECTS.map((project) => (
             <ProjectCard
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              link={project.link}
-              ctaLabel={"ctaLabel" in project ? project.ctaLabel : undefined}
-              secondaryLabel={
-                "secondaryLabel" in project ? project.secondaryLabel : undefined
-              }
-              secondaryLink={
-                "secondaryLink" in project ? project.secondaryLink : undefined
-              }
-              hidePrimaryCta={
-                "hidePrimaryCta" in project ? project.hidePrimaryCta : undefined
-              }
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            link={project.link}
+            ctaLabel={project.ctaLabel}
+            secondaryLabel={project.secondaryLabel}
+            secondaryLink={project.secondaryLink}
             />
           ))}
         </div>
