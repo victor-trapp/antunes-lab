@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Income {
+  id        Int       @id @default(autoincrement())
+  name      String
+  amount    Decimal   @db.Decimal(12, 2)
+  frequency IncomeFrequency
+  createdAt DateTime  @default(now())
+}
+
+model Expense {
+  id        Int         @id @default(autoincrement())
+  name      String
+  amount    Decimal     @db.Decimal(12, 2)
+  type      ExpenseType
+  createdAt DateTime    @default(now())
+}
+
+model Debt {
+  id              Int       @id @default(autoincrement())
+  name            String
+  totalAmount     Decimal   @db.Decimal(12, 2)
+  currentBalance  Decimal   @db.Decimal(12, 2)
+  minimumPayment  Decimal   @db.Decimal(12, 2)
+  interestRate    Decimal?  @db.Decimal(5, 2)
+  createdAt       DateTime  @default(now())
+}
+
+enum IncomeFrequency {
+  MONTHLY
+}
+
+enum ExpenseType {
+  FIXED
+  VARIABLE
+}
