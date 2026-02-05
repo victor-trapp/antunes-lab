@@ -6,7 +6,7 @@ app.use(express.json()); // lets me read req.body
 
 //GET
 
-app.get("/", (_req: Request, res Response) => {
+app.get("/", (_req: Request, res: Response) => {
     res.send("ok all good");
 });
 
