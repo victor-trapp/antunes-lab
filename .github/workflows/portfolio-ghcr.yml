@@ -23,7 +23,6 @@ env:
 
 jobs:
   build-and-push:
-    # Run on ci/portfolio pushes, PRs to main, and main pushes
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -61,7 +60,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
-    # ONLY deploy when main gets updated (merge to main)
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: build-and-push
     runs-on: self-hosted
@@ -69,7 +67,7 @@ jobs:
       contents: read
       packages: read
     steps:
-      - name: Restart portfolio deployment (pull latest tag)
+      - name: Restart portfolio deployment
         run: |
           kubectl -n portfolio rollout restart deployment/portfolio
           kubectl -n portfolio rollout status deployment/portfolio --timeout=180s
