@@ -108,7 +108,7 @@ export default function FinanceCalculator() {
           </h1>
           <p className="mt-2 text-sm text-gray-300">
             Enter your monthly numbers. Nothing is saved — this is just a quick
-            planner.
+            planner. :D
           </p>
         </div>
 
