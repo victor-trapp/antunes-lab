@@ -2,16 +2,19 @@ name: Build & Deploy Portfolio
 
 on:
   push:
-    branches:
-      - main
-      - ci/portfolio
+    branches: ["main", "ci/portfolio"]
+    paths:
+      - "portfolio/**"
+      - ".github/workflows/portfolio-ghcr.yml"
+  pull_request:
+    branches: ["main"]
     paths:
       - "portfolio/**"
       - ".github/workflows/portfolio-ghcr.yml"
   workflow_dispatch: {}
 
 concurrency:
-  group: portfolio-${{ github.ref }}
+  group: portfolio-main
   cancel-in-progress: true
 
 env:
@@ -19,7 +22,29 @@ env:
   IMAGE_NAME: victor-trapp/antunes-lab-portfolio
 
 jobs:
+  pr-build:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build only (no push)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./portfolio
+          file: ./portfolio/Dockerfile
+          push: false
+          tags: pr-test:latest
+
   build-and-push:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: read
