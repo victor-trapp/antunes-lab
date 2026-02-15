@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fffaf5;
+  color: #7c2d12;
+}
+
+.preload {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(900px 520px at 18% 18%, rgba(255, 115, 22, 0.22), transparent 60%),
+    radial-gradient(800px 480px at 82% 20%, rgba(255, 115, 22, 0.12), transparent 62%),
+    linear-gradient(180deg, #fffaf5 0%, #ffffff 60%, #fffaf5 100%);
+  z-index: 50;
+  transition: transform 500ms ease, opacity 500ms ease;
+}
+
+.preload.loaded {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  border: 3px solid rgba(255, 115, 22, 0.25);
+  border-top-color: rgba(255, 115, 22, 1);
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms ease;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-overlay-light {
+  background:
+    radial-gradient(1200px 650px at 20% 30%, rgba(255, 115, 22, 0.2), transparent 62%),
+    radial-gradient(900px 520px at 80% 20%, rgba(255, 255, 255, 0.9), transparent 58%),
+    linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.14));
+}
+
+.hero-title-shadow-dark {
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45),
+    0 8px 20px rgba(255, 255, 255, 0.28),
+    0 2px 12px rgba(0, 0, 0, 0.24);
+}
+
+.hero-subtitle-shadow {
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.32);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (hover: hover) {
+  .menu-card-hover img {
+    transition: transform 500ms ease;
+  }
+  .menu-card-hover:hover img {
+    transform: scale(1.06);
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(255, 115, 22, 0.22);
+}
+.no-scrollbar {
+  scroll-snap-type: x mandatory;
+}
