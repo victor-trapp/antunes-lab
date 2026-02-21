@@ -13,6 +13,7 @@ type MenuItem = {
   alt: string;
   title: string;
   description?: string;
+  imagePosition?: string;
 };
 
 type MenuSection = {
@@ -36,7 +37,7 @@ const menuSections: MenuSection[] = [
       { image: '/images/coxinha-queijo.jpeg', alt: 'Coxinha de queijo', title: 'Queijo', description: 'Queijo derretido por dentro, crocante por fora.' },
       { image: '/images/coxinha-presuntoqueijo.jpeg', alt: 'Coxinha de presunto e queijo', title: 'Presunto & Queijo', description: 'O clássico irresistível que agrada todo mundo.' },
       { image: '/images/coxinha-docedeleite.jpeg', alt: 'Coxinha de doce de leite', title: 'Doce de leite', description: 'Versão adocicada com doce de leite cremoso no recheio.' },
-      { image: '/images/coxinha-nutela.jpeg', alt: 'Coxinha de nutela', title: 'Nutela', description: 'Massa crocante recheada com generosa camada de nutela.' }
+      { image: '/images/coxinha-nutela.jpeg', alt: 'Coxinha de nutela', title: 'Nutela', description: 'Massa crocante recheada com generosa camada de nutela.', imagePosition: 'center 28%' }
     ]
   },
   {
@@ -49,7 +50,7 @@ const menuSections: MenuSection[] = [
       { image: '/images/pastel-pizza.jpeg', alt: 'Pastel de pizza', title: 'Pizza', description: 'Molho, queijo e uma surpresa boa dentro de cada mordida.' },
       { image: '/images/pastel-brocolis.jpeg', alt: 'Pastel de brócolis', title: 'Brócolis', description: 'Opção leve com brócolis e queijo numa combinação perfeita.' },
       { image: '/images/pastel-banana.jpeg', alt: 'Pastel de banana', title: 'Banana', description: 'Banana caramelizada com canela pra adoçar o dia.' },
-      { image: '/images/pastel-chocolate.jpeg', alt: 'Pastel de chocolate', title: 'Chocolate', description: 'Chocolate quente derretendo no centro da massa crocante.' }
+      { image: '/images/pastel-chocolate.jpeg', alt: 'Pastel de chocolate', title: 'Chocolate', description: 'Chocolate quente derretendo no centro da massa crocante.', imagePosition: 'center 28%' }
     ]
   },
   {
@@ -158,7 +159,8 @@ function FlipCard({ item, sectionId }: { item: MenuItem; sectionId: string }) {
               <img
                 src={item.image}
                 alt={item.alt}
-                className="h-full w-full object-cover object-[center_38%] transition duration-500 group-hover:scale-105"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                style={{ objectPosition: item.imagePosition ?? 'center 38%' }}
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/5 to-transparent" />
@@ -522,9 +524,9 @@ function App(): JSX.Element {
 
                 <div className="mt-5 sm:mt-6 space-y-3 sm:space-y-4 text-stone-700">
                   {[
-                    { label: 'Endereço', value: 'R. Wâlter ...' },
-                    { label: 'Horário', value: 'Todos os dias' },
-                    { label: 'WhatsApp', value: '+55 48 9 3380 6781' }
+                    { label: 'Endereço', value: 'R. Wâlter Vetterli - Lauro Müller, SC, 88880-000, Brasil' },
+                    { label: 'Horário de atendimento', value: 'Seg. a Sex.: 14:00–22:00 | Sáb.: 14:00–19:00 | Dom.: Fechado' },
+                    { label: 'WhatsApp', value: '+55 48 933806781' }
                   ].map(({ label, value }) => (
                     <div key={label} className="flex items-start gap-3">
                       <div className="mt-0.5 h-5 w-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0">
