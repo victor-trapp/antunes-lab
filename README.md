@@ -12,10 +12,11 @@ This repository is my **portfolio and working space**.
 
 It contains:
 - **Linux scripts** for automation and system tasks  
-- **Programming work** in JavaScript, TypeScript, and Python  
+- **Programming work** in JavaScript, TypeScript, GO and Python  
 - **Small applications and services**  
 - **Website and frontend projects**  
-
+- **Training folder with GO, TS, JS**
+  
 Everything here is **hands-on** and built as part of my learning and development.
 
 ---

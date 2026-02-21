@@ -13,7 +13,10 @@ type MenuItem = {
   alt: string;
   title: string;
   description?: string;
+<<<<<<< HEAD
   imagePosition?: string;
+=======
+>>>>>>> origin/main
 };
 
 type MenuSection = {
@@ -37,7 +40,11 @@ const menuSections: MenuSection[] = [
       { image: '/images/coxinha-queijo.jpeg', alt: 'Coxinha de queijo', title: 'Queijo', description: 'Queijo derretido por dentro, crocante por fora.' },
       { image: '/images/coxinha-presuntoqueijo.jpeg', alt: 'Coxinha de presunto e queijo', title: 'Presunto & Queijo', description: 'O clássico irresistível que agrada todo mundo.' },
       { image: '/images/coxinha-docedeleite.jpeg', alt: 'Coxinha de doce de leite', title: 'Doce de leite', description: 'Versão adocicada com doce de leite cremoso no recheio.' },
+<<<<<<< HEAD
       { image: '/images/coxinha-nutela.jpeg', alt: 'Coxinha de nutela', title: 'Nutela', description: 'Massa crocante recheada com generosa camada de nutela.', imagePosition: 'center 28%' }
+=======
+      { image: '/images/coxinha-nutela.jpeg', alt: 'Coxinha de nutela', title: 'Nutela', description: 'Massa crocante recheada com generosa camada de nutela.' }
+>>>>>>> origin/main
     ]
   },
   {
@@ -50,7 +57,11 @@ const menuSections: MenuSection[] = [
       { image: '/images/pastel-pizza.jpeg', alt: 'Pastel de pizza', title: 'Pizza', description: 'Molho, queijo e uma surpresa boa dentro de cada mordida.' },
       { image: '/images/pastel-brocolis.jpeg', alt: 'Pastel de brócolis', title: 'Brócolis', description: 'Opção leve com brócolis e queijo numa combinação perfeita.' },
       { image: '/images/pastel-banana.jpeg', alt: 'Pastel de banana', title: 'Banana', description: 'Banana caramelizada com canela pra adoçar o dia.' },
+<<<<<<< HEAD
       { image: '/images/pastel-chocolate.jpeg', alt: 'Pastel de chocolate', title: 'Chocolate', description: 'Chocolate quente derretendo no centro da massa crocante.', imagePosition: 'center 28%' }
+=======
+      { image: '/images/pastel-chocolate.jpeg', alt: 'Pastel de chocolate', title: 'Chocolate', description: 'Chocolate quente derretendo no centro da massa crocante.' }
+>>>>>>> origin/main
     ]
   },
   {
@@ -159,8 +170,12 @@ function FlipCard({ item, sectionId }: { item: MenuItem; sectionId: string }) {
               <img
                 src={item.image}
                 alt={item.alt}
+<<<<<<< HEAD
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 style={{ objectPosition: item.imagePosition ?? 'center 38%' }}
+=======
+                className="h-full w-full object-cover object-[center_38%] transition duration-500 group-hover:scale-105"
+>>>>>>> origin/main
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/5 to-transparent" />
