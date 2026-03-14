@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 
-const heroImage = '/images/hero.jpg';
+const heroImage = '/images/hero.webp';
 
 const navItems = [
   { href: '#home', label: 'Início' },
@@ -31,13 +31,15 @@ const menuSections: MenuSection[] = [
     title: 'Coxinhas',
     subtitle: 'Sabores clássicos e especiais',
     items: [
-      { image: '/images/produto-coxinha-frango.jpg', alt: 'Coxinha de frango', title: 'Frango', description: 'Recheio cremoso de frango desfiado temperado na medida certa.' },
-      { image: '/images/coxinha-carne.jpeg', alt: 'Coxinha de carne', title: 'Carne', description: 'Carne moída suculenta com temperos especiais da casa.' },
-      { image: '/images/coxinha-calabresa.jpeg', alt: 'Coxinha de calabresa', title: 'Calabresa', description: 'Calabresa levemente apimentada com um toque defumado.' },
-      { image: '/images/coxinha-queijo.jpeg', alt: 'Coxinha de queijo', title: 'Queijo', description: 'Queijo derretido por dentro, crocante por fora.' },
-      { image: '/images/coxinha-presuntoqueijo.jpeg', alt: 'Coxinha de presunto e queijo', title: 'Presunto & Queijo', description: 'O clássico irresistível que agrada todo mundo.' },
-      { image: '/images/coxinha-docedeleite.jpeg', alt: 'Coxinha de doce de leite', title: 'Doce de leite', description: 'Versão adocicada com doce de leite cremoso no recheio.' },
-      { image: '/images/coxinha-nutela.jpeg', alt: 'Coxinha de nutela', title: 'Nutela', description: 'Massa crocante recheada com generosa camada de nutela.', imagePosition: 'center 28%' }
+      { image: '/images/coxinha-frango.webp', alt: 'Coxinha de frango', title: 'Frango', description: 'Recheio cremoso de frango desfiado temperado na medida certa.' },
+      { image: '/images/coxinha-carne.webp', alt: 'Coxinha de carne', title: 'Carne', description: 'Carne moída suculenta com temperos especiais da casa.', imagePosition: 'center 30%' },
+      { image: '/images/coxinha-calabresa.webp', alt: 'Coxinha de calabresa', title: 'Calabresa', description: 'Calabresa levemente apimentada com um toque defumado.' },
+      { image: '/images/coxinha-queijo.webp', alt: 'Coxinha de queijo', title: 'Queijo', description: 'Queijo derretido por dentro, crocante por fora.' },
+      { image: '/images/coxinha-presuntoqueijo.webp', alt: 'Coxinha de presunto e queijo', title: 'Presunto & Queijo', description: 'O clássico irresistível que agrada todo mundo.' },
+      { image: '/images/coxinha-docedeleite.webp', alt: 'Coxinha de doce de leite', title: 'Doce de leite', description: 'Versão adocicada com doce de leite cremoso no recheio.', imagePosition: 'center 48%' },
+      { image: '/images/coxinha-nutela.webp', alt: 'Coxinha de nutela', title: 'Nutela', description: 'Massa crocante recheada com generosa camada de nutela.', imagePosition: 'center 58%' },
+      { image: '/images/coxinha-chocolatebranco.webp', alt: 'Coxinha de chocolate branco', title: 'Chocolate branco', description: 'Chocolate branco derretido por dentro numa casquinha crocante irresistível.', imagePosition: 'center 60%' },
+      { image: '/images/coxinha-leitecondesadoeamendoim.webp', alt: 'Coxinha de Leite Condensado e Amendoim', title: 'Leite Condensado e Amendoim', description: 'Combinação perfeita de leite condensado com amendoim torrado e crocante.', imagePosition: 'center 40%' }
     ]
   },
   {
@@ -45,12 +47,12 @@ const menuSections: MenuSection[] = [
     title: 'Pastéis',
     subtitle: 'Doces e salgados',
     items: [
-      { image: '/images/pastel-frango.jpeg', alt: 'Pastel de frango', title: 'Frango', description: 'Massa fininha e crocante com frango cremoso.' },
-      { image: '/images/pastel-carne.jpeg', alt: 'Pastel de carne', title: 'Carne', description: 'Carne temperada com ervas frescas e muito sabor.' },
-      { image: '/images/pastel-pizza.jpeg', alt: 'Pastel de pizza', title: 'Pizza', description: 'Molho, queijo e uma surpresa boa dentro de cada mordida.' },
-      { image: '/images/pastel-brocolis.jpeg', alt: 'Pastel de brócolis', title: 'Brócolis', description: 'Opção leve com brócolis e queijo numa combinação perfeita.' },
-      { image: '/images/pastel-banana.jpeg', alt: 'Pastel de banana', title: 'Banana', description: 'Banana caramelizada com canela pra adoçar o dia.' },
-      { image: '/images/pastel-chocolate.jpeg', alt: 'Pastel de chocolate', title: 'Chocolate', description: 'Chocolate quente derretendo no centro da massa crocante.', imagePosition: 'center 28%' }
+      { image: '/images/pastel-frango.webp', alt: 'Pastel de frango', title: 'Frango', description: 'Massa fininha e crocante com frango cremoso.' },
+      { image: '/images/pastel-carne.webp', alt: 'Pastel de carne', title: 'Carne', description: 'Carne temperada com ervas frescas e muito sabor.' },
+      { image: '/images/pastel-pizza.webp', alt: 'Pastel de pizza', title: 'Pizza', description: 'Molho, queijo e uma surpresa boa dentro de cada mordida.' },
+      { image: '/images/pastel-brocolis.webp', alt: 'Pastel de brócolis', title: 'Brócolis', description: 'Opção leve com brócolis e queijo numa combinação perfeita.' },
+      { image: '/images/pastel-banana.webp', alt: 'Pastel de banana', title: 'Banana', description: 'Banana caramelizada com canela pra adoçar o dia.' },
+      { image: '/images/pastel-chocolate.webp', alt: 'Pastel de chocolate', title: 'Chocolate', description: 'Chocolate quente derretendo no centro da massa crocante.', imagePosition: 'center 48%' }
     ]
   },
   {
@@ -58,9 +60,9 @@ const menuSections: MenuSection[] = [
     title: 'Outros',
     subtitle: 'Pra completar o pedido',
     items: [
-      { image: '/images/batata-frita.jpeg', alt: 'Batata frita', title: 'Batata frita', description: 'Crocante, dourada e temperada do jeito que tem que ser.' },
-      { image: '/images/salsichinha.jpeg', alt: 'Salsichinha', title: 'Salsichinha', description: 'Irresistível, perfeita pra petiscar.' },
-      { image: '/images/produto-bolinha-queijo.jpg', alt: 'Bolinha de queijo', title: 'Bolinha de queijo', description: 'Queijo derretido por dentro, casquinha dourada por fora.' }
+      { image: '/images/batata-frita.webp', alt: 'Batata frita', title: 'Batata frita', description: 'Crocante, dourada e temperada do jeito que tem que ser.' },
+      { image: '/images/salsichinha.webp', alt: 'Salsichinha', title: 'Salsichinha', description: 'Irresistível, perfeita pra petiscar.' },
+      { image: '/images/bolinha-queijo.webp', alt: 'Bolinha de queijo', title: 'Bolinha de queijo', description: 'Queijo derretido por dentro, casquinha dourada por fora.' }
     ]
   }
 ];
@@ -126,15 +128,22 @@ function RevealSection({
 }
 
 // CSS 3D flip — front shows the photo, back shows the description.
-function FlipCard({ item, sectionId }: { item: MenuItem; sectionId: string }) {
+function FlipCard({ item, sectionId, index = 0 }: { item: MenuItem; sectionId: string; index?: number }) {
   const [flipped, setFlipped] = useState(false);
+  const { ref, visible } = useScrollReveal({ threshold: 0.05 });
 
   return (
     <article
+      ref={ref}
       data-card
-      className="snap-start shrink-0 cursor-pointer
+      className="group snap-start shrink-0 cursor-pointer
         w-[80vw] sm:w-[260px] md:w-[300px] lg:w-[calc((100%-48px)/3)]"
-      style={{ perspective: '1200px' }}
+      style={{
+        perspective: '1200px',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(40px)',
+        transition: `opacity 0.5s ease ${index * 80}ms, transform 0.5s cubic-bezier(0.22,1,0.36,1) ${index * 80}ms`
+      }}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       onClick={() => setFlipped(f => !f)}
@@ -198,6 +207,7 @@ function App(): JSX.Element {
   const [loaded, setLoaded] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [heroOffset, setHeroOffset] = useState(0);
 
   const year = useMemo(() => new Date().getFullYear(), []);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -211,7 +221,10 @@ function App(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    const onScroll = (): void => setIsScrolled(window.scrollY > 40);
+    const onScroll = (): void => {
+      setIsScrolled(window.scrollY > 40);
+      setHeroOffset(window.scrollY);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -380,8 +393,13 @@ function App(): JSX.Element {
 
       <main id="home">
         <section className="relative min-h-screen overflow-hidden">
-          <div className="absolute inset-0">
-            <img src={heroImage} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 overflow-hidden">
+            <img
+              src={heroImage}
+              alt=""
+              className="h-[120%] w-full object-cover will-change-transform"
+              style={{ transform: `translateY(${heroOffset * 0.35}px)` }}
+            />
           </div>
           <div className="hero-overlay-warm absolute inset-0" />
 
@@ -405,7 +423,7 @@ function App(): JSX.Element {
                 </h1>
 
                 <p className="hero-text-anim-delay mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-stone-700/90 leading-relaxed max-w-sm sm:max-w-lg">
-                  Coxinhas e salgadinhos feitos com carinho. Perfeitos pra festa, reunião, ou aquele lanche que salva o dia.
+                  Mini coxinhas, pastéis e salgadinhos feitos com carinho. Perfeitos para sua festa, reunião ou aquele lanche rápido que salva o dia.
                 </p>
 
                 <div className="hero-cta-anim mt-6 sm:mt-8 flex flex-col gap-3 w-full sm:w-auto sm:flex-row">
@@ -500,8 +518,8 @@ function App(): JSX.Element {
                   ref={node => { sectionRefs.current[section.id] = node; }}
                   className="no-scrollbar flex gap-4 sm:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth"
                 >
-                  {section.items.map(item => (
-                    <FlipCard key={`${section.id}-${item.title}`} item={item} sectionId={section.id} />
+                  {section.items.map((item, i) => (
+                    <FlipCard key={`${section.id}-${item.title}`} item={item} sectionId={section.id} index={i} />
                   ))}
                 </div>
               </RevealSection>
