@@ -583,10 +583,38 @@ function App(): JSX.Element {
               </RevealSection>
             </div>
 
+            <RevealSection direction="up" delay={100} className="mt-10 sm:mt-14">
+              <div className="overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-amber-200/60 shadow-[0_20px_60px_-20px_rgba(217,119,6,0.2)]">
+                <iframe
+                  title="Localização Mini Coxinhas"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Mini+Coxinhas,+R.+W%C3%A2lter+Vetterli+-+Lauro+M%C3%BCller,+SC,+88880-000,+Brazil&zoom=16"
+                  className="w-full h-[250px] sm:h-[300px]"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </RevealSection>
+
             <RevealSection direction="up" delay={100} className="mt-12 sm:mt-16 flex flex-col items-center gap-3">
               <img src="/images/minicoxinhaslogo.png" alt="Logo Mini Coxinhas" className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-white p-1.5 object-contain ring-2 ring-amber-200 shadow-md" />
               <p className="text-sm font-bold text-stone-800 tracking-tight">Mini Coxinhas</p>
-              <p className="text-xs text-stone-400">© {year} Mini Coxinhas. Todos os direitos reservados.</p>
+              <div className="flex items-center gap-3 mt-1">
+                <a
+                  href="https://www.instagram.com/minicoxinhaslm/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500 transition hover:text-pink-600"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 0 1 1.52.99 4.08 4.08 0 0 1 .99 1.52c.163.46.35 1.26.403 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 0 1-.99 1.52 4.08 4.08 0 0 1-1.52.99c-.46.163-1.26.35-2.43.403-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 0 1-1.52-.99 4.08 4.08 0 0 1-.99-1.52c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 0 1 .99-1.52 4.08 4.08 0 0 1 1.52-.99c.46-.163 1.26-.35 2.43-.403C8.416 2.175 8.796 2.163 12 2.163M12 0C8.741 0 8.333.014 7.053.072c-1.277.058-2.15.261-2.913.558a5.88 5.88 0 0 0-2.126 1.384A5.88 5.88 0 0 0 .63 4.14C.333 4.903.13 5.776.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.058 1.277.261 2.15.558 2.913a5.88 5.88 0 0 0 1.384 2.126A5.88 5.88 0 0 0 4.14 23.37c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.058 2.15-.261 2.913-.558a5.88 5.88 0 0 0 2.126-1.384 5.88 5.88 0 0 0 1.384-2.126c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.277-.261-2.15-.558-2.913a5.88 5.88 0 0 0-1.384-2.126A5.88 5.88 0 0 0 19.86.63c-.763-.297-1.636-.5-2.913-.558C15.667.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" />
+                  </svg>
+                  @minicoxinhaslm
+                </a>
+              </div>
+              <p className="text-xs text-stone-400 mt-2">© {year} Mini Coxinhas. Todos os direitos reservados.</p>
+              <p className="text-[10px] text-stone-300 mt-1">Desenvolvido por Victor Antunes</p>
             </RevealSection>
           </div>
         </section>
