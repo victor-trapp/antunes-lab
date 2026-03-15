@@ -22,18 +22,42 @@ export const HeroContent = () => {
         variants={slideInFromLeft(0.8)}
         className="w-full xl:w-1/2 flex justify-center items-center"
       >
-        <div className="relative w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] lg:w-[420px] lg:h-[420px] drop-shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
-          <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle_at_35%_30%,rgba(124,58,237,0.45),transparent_60%)] blur-3xl opacity-80" />
-          <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle_at_60%_70%,rgba(34,211,238,0.25),transparent_55%)] blur-2xl opacity-70" />
-          <div className="absolute -inset-2 rounded-full bg-[radial-gradient(circle_at_center,rgba(8,5,18,0.9),rgba(2,0,18,0.2)_70%)]" />
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="relative w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] lg:w-[420px] lg:h-[420px]"
+        >
+          {/* ambient glow */}
+          <motion.div
+            animate={{ opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -inset-10 rounded-full bg-[radial-gradient(circle_at_35%_30%,rgba(124,58,237,0.4),transparent_60%)] blur-3xl"
+          />
+          <motion.div
+            animate={{ opacity: [0.4, 0.7, 0.4] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute -inset-6 rounded-full bg-[radial-gradient(circle_at_60%_70%,rgba(34,211,238,0.2),transparent_55%)] blur-2xl"
+          />
 
-          {/* halo */}
-          <div className="absolute -inset-1 rounded-full border border-purple-300/25 shadow-[0_0_60px_14px_rgba(168,85,247,0.35)]" />
-          <div className="absolute inset-3 rounded-full border border-cyan-300/10 shadow-[inset_0_0_45px_rgba(168,85,247,0.22)]" />
+          {/* rotating orbit ring */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            className="absolute -inset-3 rounded-full"
+            style={{
+              background: "conic-gradient(from 0deg, transparent 0%, rgba(168,85,247,0.4) 25%, transparent 50%, rgba(34,211,238,0.3) 75%, transparent 100%)",
+              maskImage: "radial-gradient(circle, transparent 65%, black 66%, black 72%, transparent 73%)",
+              WebkitMaskImage: "radial-gradient(circle, transparent 65%, black 66%, black 72%, transparent 73%)",
+            }}
+          />
 
-          {/* tiny stars*/}
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.25)_0_1px,transparent_2px),radial-gradient(circle_at_70%_60%,rgba(255,255,255,0.18)_0_1px,transparent_2px),radial-gradient(circle_at_40%_80%,rgba(255,255,255,0.14)_0_1px,transparent_2px)] opacity-35" />
+          {/* border ring */}
+          <div className="absolute -inset-1 rounded-full border border-white/10 shadow-[0_0_40px_8px_rgba(168,85,247,0.2)]" />
 
+          {/* dark backdrop */}
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(8,5,18,0.95),rgba(2,0,18,0.3)_70%)]" />
+
+          {/* portrait */}
           <div className="absolute inset-0 rounded-full overflow-hidden [mask-image:linear-gradient(to_bottom,#000_80%,transparent_98%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_80%,transparent_98%)]">
             <Image
               src="/images/branding/victor.png"
@@ -44,7 +68,7 @@ export const HeroContent = () => {
               className="select-none object-cover"
             />
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
 
