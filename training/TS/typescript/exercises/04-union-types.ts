@@ -12,8 +12,11 @@ type StringOrNumber = string | number;
 // - If it's a string, return its length
 // - If it's a number, return the number doubled
 function processValue(value: StringOrNumber): number {
-  // your code here
-}
+  if(typeof value === "string") {
+    return value.length
+  } else{
+  return value * 2;
+}}
 
 // A result can be a success or an error
 type Result =
@@ -24,13 +27,26 @@ type Result =
 // - "Got data: <data>" on success
 // - "Error: <message>" on error
 function handleResult(result: Result): string {
-  // your code here
+  if (result.status === "success") {
+    return `Got data: ${result.data}`;
+  } else {
+    return `Error: ${result.message}`
+  }
 }
 
 // TODO: Complete this function that takes an array of StringOrNumber
 // and returns two separate arrays: one for strings, one for numbers
 function splitByType(values: StringOrNumber[]): { strings: string[]; numbers: number[] } {
-  // your code here
+  const strings: string[] = [];
+  const numbers: number[] = [];
+  for (const value of values) {
+    if (typeof value === "string") {
+      strings.push(value);
+    } else {
+      numbers.push(value)
+    }
+  }
+  return { strings, numbers };
 }
 
 // --- Tests (do not modify) ---

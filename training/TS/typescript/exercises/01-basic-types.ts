@@ -6,19 +6,19 @@
  */
 
 // TODO: Add type annotations to these variables
-let username = "Alice";
-let age = 30;
-let isActive = true;
+let username: string = "Alice";
+let age: number = 30;
+let isActive: boolean = true;
 
 // TODO: Complete this function that takes a name (string) and age (number)
 // and returns a greeting string like: "Hello, Alice! You are 30 years old."
-function greet(name, age) {
-  // your code here
+function greet(name:string, age:number) {
+  return `Hello,${name}! You are ${age} years old.`
 }
 
 // TODO: Complete this function that takes two numbers and returns their sum
-function add(a, b) {
-  // your code here
+function add(a:number, b:number) {
+  return 'a + b'
 }
 
 // --- Tests (do not modify) ---
