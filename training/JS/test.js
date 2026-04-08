@@ -1,4 +1,4 @@
-const test = "victor"
-const test2 = "antunes"
+for (let victor = 0; victor < 100; victor++) {
+    console.log(victor.toString());
+}
 
-console.log(test + test2);
