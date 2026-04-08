@@ -1,36 +1,31 @@
-# About Me
+# Antunes Lab
 
-I’m Victor, a **Linux Technical Specialist** with a strong interest in **backend and platform engineering**.
-
-I enjoy working with **Linux, automation, and scripting**, and using that foundation to build **applications, services, and websites** that are practical and well-structured.
+Personal workspace and portfolio of **Victor Antunes** — Linux Technical Specialist working toward backend and platform engineering.
 
 ---
 
-## About This Repository
+## About
 
-This repository is my **portfolio and working space**.
+This is my main development repo. It holds everything I'm building and learning from a personal portfolio site to full-stack apps and language training exercises. The goal is to keep growing toward backend and platform engineering, using strong Linux fundamentals as the base.
 
-It contains:
-- **Linux scripts** for automation and system tasks  
-- **Programming work** in JavaScript, TypeScript, GO and Python  
-- **Small applications and services**  
-- **Website and frontend projects**  
-- **Training folder with GO, TS, JS**
-  
-Everything here is **hands-on** and built as part of my learning and development.
+---
+
+## What's inside
+
+**`portfolio/`**
+My personal portfolio website. Built with Next.js, TypeScript, and Tailwind CSS, with 3D animations powered by Three.js and smooth transitions using Framer Motion. It showcases my projects and skills.
+
+**`projects/`**
+Standalone apps built to practice and ship real things. Currently includes a vanilla JS calculator, a landing page for a Brazilian snack brand (Mini Coxinhas), and a full-stack budget planner with authentication, expense tracking, and debt payoff simulation — still in progress.
+
+**`training/`**
+Exercises and small projects for languages I'm learning or reinforcing. Languages - Go, TypeScript, JavaScript, and Node.js.
 
 ---
 
 ## Focus Areas
 
-- Linux & system fundamentals  
-- Automation and scripting  
-- Backend logic and services  
-- Building and structuring apps and websites  
-- Writing clear, maintainable code  
-
----
-
-## Goal
-
-To continue growing toward **backend and platform engineering**, using strong **Linux fundamentals** as the base.
+- Linux, infrastructure, and platform foundations
+- Backend development with Go, TypeScript, and Node.js
+- Automation, scripting, and developer tooling
+- Building practical projects across systems and modern infrastructure
