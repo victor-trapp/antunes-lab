@@ -106,9 +106,9 @@ function RevealSection({
   const { ref, visible } = useScrollReveal();
 
   const transforms: Record<string, string> = {
-    up: 'translateY(48px)',
-    left: 'translateX(-48px)',
-    right: 'translateX(48px)',
+    up: 'translateY(32px)',
+    left: 'translateX(-32px)',
+    right: 'translateX(32px)',
     fade: 'translateY(0)'
   };
 
@@ -119,7 +119,7 @@ function RevealSection({
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translate(0)' : transforms[direction],
-        transition: `opacity 0.7s ease ${delay}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms`
+        transition: `opacity 0.65s ease ${delay}ms, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms`
       }}
     >
       {children}
@@ -168,7 +168,7 @@ function FlipCard({ item, sectionId, index = 0 }: { item: MenuItem; sectionId: s
               <img
                 src={item.image}
                 alt={item.alt}
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 style={{ objectPosition: item.imagePosition ?? 'center 38%' }}
                 loading="lazy"
               />
@@ -336,7 +336,7 @@ function App(): JSX.Element {
 
         {isNavOpen && (
           <div className="fixed inset-0 z-50" onClick={closeNav}>
-            <div className="absolute inset-0 bg-stone-900/30 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-stone-900/30 backdrop-blur-sm transition-opacity duration-300" />
             <div
               className="mobile-drawer absolute right-0 top-0 h-full w-[82%] max-w-xs bg-white/98 p-6 shadow-2xl backdrop-blur-xl"
               onClick={e => e.stopPropagation()}
@@ -347,7 +347,7 @@ function App(): JSX.Element {
                   <p className="font-black text-stone-800 text-sm" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Mini Coxinhas</p>
                 </a>
                 <button
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stone-200 text-stone-500 transition hover:bg-stone-50 hover:text-stone-800"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stone-200 text-stone-500 transition-all duration-200 hover:bg-stone-50 hover:text-stone-800 active:scale-90"
                   aria-label="Fechar"
                   onClick={closeNav}
                 >
@@ -363,7 +363,7 @@ function App(): JSX.Element {
                     key={item.href}
                     href={item.href}
                     onClick={closeNav}
-                    className="drawer-link flex items-center justify-between rounded-xl px-4 py-3.5 font-semibold text-stone-700 transition hover:bg-amber-50 hover:text-amber-700 group"
+                    className="drawer-link flex items-center justify-between rounded-xl px-4 py-3.5 font-semibold text-stone-700 transition-all duration-200 hover:bg-amber-50 hover:text-amber-700 group"
                     style={{ animationDelay: `${i * 60}ms` }}
                   >
                     {item.label}
@@ -379,7 +379,7 @@ function App(): JSX.Element {
                 target="_blank"
                 rel="noreferrer"
                 onClick={closeNav}
-                className="flex items-center justify-center gap-2 w-full rounded-2xl bg-amber-500 px-4 py-3.5 font-bold text-white transition hover:bg-amber-600 shadow-lg shadow-amber-300/30"
+                className="flex items-center justify-center gap-2 w-full rounded-2xl bg-amber-500 px-4 py-3.5 font-bold text-white transition-all duration-300 hover:bg-amber-600 active:scale-[0.97] shadow-lg shadow-amber-300/30"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current shrink-0">
                   <path d="M19.05 4.94A9.86 9.86 0 0 0 12 2a10 10 0 0 0-8.67 14.97L2 22l5.18-1.3A10 10 0 1 0 19.05 4.94Z" />
@@ -429,7 +429,7 @@ function App(): JSX.Element {
                 <div className="hero-cta-anim mt-6 sm:mt-8 flex flex-col gap-3 w-full sm:w-auto sm:flex-row">
                   <a
                     href="#produtos"
-                    className="inline-flex items-center justify-center rounded-2xl bg-amber-500 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-bold text-white transition hover:bg-amber-600 shadow-xl shadow-amber-400/40 hover:-translate-y-0.5 duration-200"
+                    className="inline-flex items-center justify-center rounded-2xl bg-amber-500 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-bold text-white transition-all duration-300 hover:bg-amber-600 shadow-xl shadow-amber-400/40 hover:-translate-y-1 active:scale-[0.97]"
                   >
                     Ver produtos
                   </a>
@@ -437,7 +437,7 @@ function App(): JSX.Element {
                     href={whatsAppHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-2xl border-2 border-stone-200/60 bg-white/70 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-bold text-stone-800 transition hover:bg-white/90 hover:-translate-y-0.5 duration-200 backdrop-blur"
+                    className="inline-flex items-center justify-center rounded-2xl border-2 border-stone-200/60 bg-white/70 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-bold text-stone-800 transition-all duration-300 hover:bg-white/90 hover:-translate-y-1 active:scale-[0.97] backdrop-blur"
                   >
                     Pedir no WhatsApp
                   </a>
@@ -479,7 +479,7 @@ function App(): JSX.Element {
               href={whatsAppHref}
               target="_blank"
               rel="noreferrer"
-              className="self-start sm:self-auto inline-flex items-center justify-center rounded-2xl border-2 border-amber-200 bg-white px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-bold text-amber-800 transition hover:bg-amber-50 hover:-translate-y-0.5 duration-200 shadow-md shadow-amber-100"
+              className="self-start sm:self-auto inline-flex items-center justify-center rounded-2xl border-2 border-amber-200 bg-white px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-bold text-amber-800 transition-all duration-300 hover:bg-amber-50 hover:-translate-y-1 active:scale-[0.97] shadow-md shadow-amber-100"
             >
               Pedir agora →
             </a>
@@ -502,13 +502,13 @@ function App(): JSX.Element {
                     <button
                       type="button"
                       onClick={() => scrollSectionByCards(section.id, 'left')}
-                      className="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl border-2 border-amber-200 bg-white text-amber-800 transition hover:bg-amber-50 hover:border-amber-400 font-bold text-sm"
+                      className="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl border-2 border-amber-200 bg-white text-amber-800 transition-all duration-200 hover:bg-amber-50 hover:border-amber-400 hover:scale-110 active:scale-90 font-bold text-sm"
                       aria-label={`Voltar ${section.title}`}
                     >←</button>
                     <button
                       type="button"
                       onClick={() => scrollSectionByCards(section.id, 'right')}
-                      className="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl border-2 border-amber-200 bg-white text-amber-800 transition hover:bg-amber-50 hover:border-amber-400 font-bold text-sm"
+                      className="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl border-2 border-amber-200 bg-white text-amber-800 transition-all duration-200 hover:bg-amber-50 hover:border-amber-400 hover:scale-110 active:scale-90 font-bold text-sm"
                       aria-label={`Avançar ${section.title}`}
                     >→</button>
                   </div>
@@ -575,7 +575,7 @@ function App(): JSX.Element {
                     href={whatsAppHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-5 sm:mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-amber-500 px-6 py-3.5 sm:py-4 font-bold text-white transition hover:bg-amber-600 hover:-translate-y-0.5 duration-200 shadow-xl shadow-amber-300/40"
+                    className="mt-5 sm:mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-amber-500 px-6 py-3.5 sm:py-4 font-bold text-white transition-all duration-300 hover:bg-amber-600 hover:-translate-y-1 active:scale-[0.97] shadow-xl shadow-amber-300/40"
                   >
                     Abrir WhatsApp →
                   </a>
@@ -605,7 +605,7 @@ function App(): JSX.Element {
                   href="https://www.instagram.com/minicoxinhaslm/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500 transition hover:text-pink-600"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500 transition-colors duration-200 hover:text-pink-600"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 0 1 1.52.99 4.08 4.08 0 0 1 .99 1.52c.163.46.35 1.26.403 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 0 1-.99 1.52 4.08 4.08 0 0 1-1.52.99c-.46.163-1.26.35-2.43.403-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 0 1-1.52-.99 4.08 4.08 0 0 1-.99-1.52c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 0 1 .99-1.52 4.08 4.08 0 0 1 1.52-.99c.46-.163 1.26-.35 2.43-.403C8.416 2.175 8.796 2.163 12 2.163M12 0C8.741 0 8.333.014 7.053.072c-1.277.058-2.15.261-2.913.558a5.88 5.88 0 0 0-2.126 1.384A5.88 5.88 0 0 0 .63 4.14C.333 4.903.13 5.776.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.058 1.277.261 2.15.558 2.913a5.88 5.88 0 0 0 1.384 2.126A5.88 5.88 0 0 0 4.14 23.37c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.058 2.15-.261 2.913-.558a5.88 5.88 0 0 0 2.126-1.384 5.88 5.88 0 0 0 1.384-2.126c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.277-.261-2.15-.558-2.913a5.88 5.88 0 0 0-1.384-2.126A5.88 5.88 0 0 0 19.86.63c-.763-.297-1.636-.5-2.913-.558C15.667.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" />
@@ -620,7 +620,7 @@ function App(): JSX.Element {
         </section>
       </main>
 
-      <a href={whatsAppHref} target="_blank" rel="noreferrer" aria-label="Chamar no WhatsApp" className="whatsapp-fab fixed bottom-6 right-6 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_36px_-12px_rgba(37,211,102,0.9)] transition hover:scale-110 hover:bg-[#20bf5b] duration-200">
+      <a href={whatsAppHref} target="_blank" rel="noreferrer" aria-label="Chamar no WhatsApp" className="whatsapp-fab fixed bottom-6 right-6 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_36px_-12px_rgba(37,211,102,0.9)] hover:bg-[#20bf5b] active:scale-95">
         <svg viewBox="0 0 24 24" aria-hidden="true" className="h-7 w-7 fill-current">
           <path d="M19.05 4.94A9.86 9.86 0 0 0 12 2a10 10 0 0 0-8.67 14.97L2 22l5.18-1.3A10 10 0 1 0 19.05 4.94ZM12 20a7.93 7.93 0 0 1-4.04-1.1l-.29-.17-3.07.77.82-2.99-.19-.31A8 8 0 1 1 12 20Zm4.4-5.95c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12s-.62.78-.76.94c-.14.16-.28.18-.52.06a6.43 6.43 0 0 1-1.9-1.17 7.12 7.12 0 0 1-1.3-1.62c-.14-.24-.01-.36.1-.48.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.58 4.12 3.62.58.25 1.03.4 1.38.52.58.19 1.1.16 1.52.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
         </svg>
