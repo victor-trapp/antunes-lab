@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: edge-status-config
+  namespace: edge-lab
+data:
+  ENVIRONMENT: "home-lab"
+  SITE_NAME: "trapp-lab"
+  MESSAGE: "ola tudo bem?? hi :)"
