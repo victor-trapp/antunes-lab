@@ -42,8 +42,8 @@ docker build -t edge-status-api:0.1.0 apps/edge-status-api
 
 ```bash
 kubectl apply -f k8s/
-kubectl -n edge-lab get pods -o wide
-kubectl -n edge-lab rollout status deploy/edge-status-api
+kubectl -n trapp-lab get pods -o wide
+kubectl -n trapp-lab rollout status deploy/edge-status-api
 ```
 
 Service is NodePort 30080:
