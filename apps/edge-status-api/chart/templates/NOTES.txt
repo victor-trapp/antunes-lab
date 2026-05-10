@@ -1,0 +1,20 @@
+{{ .Values.appName }} was installed in namespace "{{ .Release.Namespace }}".
+
+Check the pods:
+  kubectl -n {{ .Release.Namespace }} get pods -l app={{ .Values.appName }}
+
+Tail the logs:
+  kubectl -n {{ .Release.Namespace }} logs -l app={{ .Values.appName }} --tail=20 -f
+
+{{- if eq .Values.service.type "NodePort" }}
+
+Reach the app from outside the cluster (any worker node IP):
+  curl http://<worker-ip>:{{ .Values.service.nodePort }}/
+  curl http://<worker-ip>:{{ .Values.service.nodePort }}/health
+  curl http://<worker-ip>:{{ .Values.service.nodePort }}/version
+  curl http://<worker-ip>:{{ .Values.service.nodePort }}/info
+{{- end }}
+
+Or port-forward to your laptop (works for any service type):
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ .Values.appName }} 8080:{{ .Values.service.port }}
+  curl http://localhost:8080/version

@@ -40,10 +40,18 @@ docker build -t edge-status-api:0.1.0 apps/edge-status-api
 
 ## Deploy to the cluster
 
+Helm chart lives in `chart/`.
+
 ```bash
-kubectl apply -f k8s/
+helm install edge-status-api ./chart -n trapp-lab --create-namespace
 kubectl -n trapp-lab get pods -o wide
 kubectl -n trapp-lab rollout status deploy/edge-status-api
+```
+
+Upgrade after changing the chart or `values.yaml`:
+
+```bash
+helm upgrade edge-status-api ./chart -n trapp-lab
 ```
 
 Service is NodePort 30080:

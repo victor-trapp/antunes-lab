@@ -1,0 +1,41 @@
+# Used as the name and label for every resource in this chart.
+appName: edge-status-api
+
+# Namespace the resources go into. Pass -n with the same value on install
+# so the Helm release record lives in the same place.
+namespace: trapp-lab
+
+replicaCount: 1
+
+# How many old ReplicaSets to keep for rollback (k8s default is 10).
+revisionHistoryLimit: 3
+
+image:
+  repository: ghcr.io/victor-trapp/edge-status-api
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30080
+
+containerPort: 8080
+
+# Loaded into the container via envFrom (ConfigMap).
+config:
+  ENVIRONMENT: home-lab
+  SITE_NAME: trapp-lab
+  MESSAGE: "ola tudo bem?? hi :)"
+
+# Set directly on the container as env vars.
+env:
+  APP_VERSION: "0.1.0"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 250m
+    memory: 128Mi

@@ -1,0 +1,25 @@
+# Patterns to ignore when packaging the chart with `helm package`.
+# Same idea as .gitignore but for Helm.
+
+# VCS
+.git/
+.gitignore
+.gitattributes
+
+# OS / editor junk
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+*~
+
+# Helm artifacts
+*.tgz
+
+# CI / docs that don't belong in the chart package
+.github/
+.circleci/
+README.md.bak
