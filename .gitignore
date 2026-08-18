@@ -10,3 +10,11 @@
 node_modules/
 __pycache__/
 *.log
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+*.auto.tfvars
+*.tfplan
+crash.log
+crash.*.log/terraform-proxmox/tfplan
