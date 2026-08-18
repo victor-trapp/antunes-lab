@@ -1,0 +1,3 @@
+## this file is for your learning, i have my own locally with the proxmox address
+
+proxmox_endpoint = "https://YOUR-PROXMOX-IP:8006/"
