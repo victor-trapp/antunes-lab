@@ -1,0 +1,2 @@
+# Copy to .proxmox-env, add the token, then source it.
+export PROXMOX_VE_API_TOKEN='root@pam!terraform=PASTE-SECRET-HERE'
