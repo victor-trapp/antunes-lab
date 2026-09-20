@@ -1,0 +1,2 @@
+# Add your Proxmox address.
+proxmox_endpoint = "https://YOUR-PROXMOX-IP:8006/"
