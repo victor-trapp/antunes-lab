@@ -14,7 +14,7 @@ output "proxmox_nodes" {
 # Show where the ISO is stored in Proxmox.
 output "kairos_iso" {
   description = "Volume ID of the Kairos ISO uploaded to Proxmox"
-  value       = proxmox_virtual_environment_file.kairos_iso.id
+  value       = "${var.proxmox_iso_datastore}:iso/${var.trapp_os_iso_file}"
 }
 
 # List the VMs and whether Terraform can rebuild them.
