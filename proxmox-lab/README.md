@@ -1,7 +1,13 @@
 # proxmox-lab
 
-Everything that runs on my Proxmox host. The Terraform lives in `terraform/`,
-so there is room next to it for whatever configures the machines afterwards.
+Everything that runs on my Proxmox host. Terraform makes the VMs, Ansible sets
+up what runs on them.
+
+```
+proxmox-lab/
+├── terraform/   the VMs
+└── ansible/     playbooks, run from ansible-cp
+```
 
 ## Terraform
 
@@ -105,6 +111,41 @@ powered off. They stay that way until I write `agent.yaml` and build them their
 own ISO.
 
 The full story is in `../experiments/kairos/README.md`.
+
+## Ansible
+
+Right now Ansible does one job: it puts the Beszel hub on `ansible-cp` so I can
+see every machine on the network from one page. I run it on `ansible-cp`
+itself, so the playbook targets localhost and there is no inventory yet.
+
+```bash
+cd ansible
+ansible-galaxy collection install -r requirements.yml
+ansible-playbook beszel-hub.yml -K
+```
+
+| File | What is in it |
+|---|---|
+| `requirements.yml` | the `community.beszel` collection |
+| `beszel-hub.yml` | installs the hub as a systemd service, version pinned |
+
+The hub is at `http://192.168.0.120:8090`. I add machines from the web UI, not
+from Ansible. Add System gives me an install command with the key and token
+already in it, I run that on the machine and it shows up. The agent listens on
+45876, so that port has to be open to the hub.
+
+Network monitors live in the same UI. The agents run ping, TCP, HTTP or DNS
+checks against a target, which is how I watch the router and anything else that
+can't run an agent.
+
+Two things that caught me out:
+
+- **Brew on the Mac.** The install fails halfway because the tap isn't trusted,
+  but the script still prints the "check status" lines like it worked. Run
+  `brew trust henrygd/beszel` first.
+- **ICMP monitors on locked down boxes.** If normal users can't ping on that
+  machine, the agent can't either, and the monitor shows 100% loss even when
+  the target is fine. A TCP monitor works there.
 
 ## Notes to self
 
