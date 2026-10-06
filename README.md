@@ -66,16 +66,23 @@ Talos is being used here to understand immutable Kubernetes node management, whe
 
 The `training/` folder is where I do raw language practice before applying things in the lab.
 
-At the moment it includes:
+It's all Go now, the TypeScript is gone.
 
-- Go exercises covering variables, control flow, functions, slices, maps, structs, pointers, interfaces, and error handling
-- A Go structured course called go-in-one-evening
-- TypeScript exercises working through basic types, arrays, interfaces, union types, classes, generics, enums, async, and utility types
-- A small TypeScript project called passgen
-- A small Node API written in TypeScript
+- `exercices-01`: variables, control flow, functions, slices, maps, structs, pointers, interfaces, and error handling
+- `exercices-02`: methods, strings and runes, custom errors, generics, goroutines, channels, select and context, mutexes, JSON, and an HTTP health check. Each one comes with tests, so I know when I've got it right
+- `projects/portcheck`: a small CLI that checks TCP ports on a list of hosts at the same time, using most of what's in `exercices-02`
+- `go-in-one-evening`: the Three Dots Labs course
+- `quii`: where I started on Learn Go with Tests
 - Some early JavaScript notes
 
-The idea is to keep language fundamentals separate from the lab itself. When I am learning a concept in Go or TypeScript I put it here, so the main lab folders stay focused on the platform work.
+Everything in `exercices-02` and `projects` starts out failing. I fill in the code until the tests pass. From `training/GO`:
+
+```bash
+go test ./exercices-02/01-methods/
+go test -race ./exercices-02/...
+```
+
+The idea is to keep language fundamentals separate from the lab itself. When I am learning a concept in Go I put it here, so the main lab folders stay focused on the platform work.
 
 ## What I want to learn from this repo
 
