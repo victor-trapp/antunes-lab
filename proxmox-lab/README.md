@@ -1,11 +1,20 @@
 # proxmox-lab
 
-Terraform for every VM on my Proxmox host. Nine machines, in two groups.
+Everything that runs on my Proxmox host. The Terraform lives in `terraform/`,
+so there is room next to it for whatever configures the machines afterwards.
+
+## Terraform
+
+Terraform owns ten machines, in two groups.
 
 **Built by Terraform.** The Kairos cluster (`kairos-cp`, `kairos-agent-01`,
 `kairos-agent-02`) installs from the ISO built in `../experiments/kairos/`. The
 Kubernetes pair (`k8s-cp-01`, `k8s-worker-01`) comes from the Ubuntu cloud
 image. Destroy one, apply, and I get it back.
+
+`ansible-cp`, my Ansible control node, is the odd one out. Terraform makes the
+VM, but I installed Ubuntu on it by hand from the ISO, so getting it back means
+doing the install again.
 
 **Adopted.** `trapp-cp` (my control station), `talos-cp-01`, `talos-worker-01`
 and `mender-cp` were built by hand and imported later. Terraform can describe
@@ -15,7 +24,9 @@ matters about them is on the disk. They all have `prevent_destroy` on them.
 Everything is in one root module and one state file. That is fine for a lab
 with one person, but it does mean a careless `destroy` takes all of it.
 
-## Before running anything
+Every command in this section runs from inside `terraform/`.
+
+### Before running anything
 
 **A Proxmox API token.** It goes in the environment, never in a `.tf` file.
 
@@ -33,12 +44,14 @@ shown once. `.proxmox-env` is gitignored.
 
 **Azure login**, because the state lives there. `az login`.
 
-**A built ISO** if you are touching the Kairos cluster. Terraform checks and
-tells you to go build one if it is missing.
+**The Kairos ISO on the datastore** if you are touching the Kairos cluster.
+Terraform does not upload it any more, it expects the file to already be there
+under the name in `trapp_os_iso_file`.
 
-## Running it
+### Running it
 
 ```bash
+cd terraform
 source .proxmox-env
 terraform plan -out tfplan
 terraform apply tfplan
@@ -49,21 +62,21 @@ Read the plan first. It is the only review step there is.
 Do not commit `tfplan`, it is binary and can hold resolved secrets. It is
 gitignored.
 
-## The files
+### The files
 
 | File | What is in it |
 |---|---|
 | `versions.tf` | Terraform and provider versions |
 | `provider.tf` | provider config, no credentials |
-| `variables.tf` | host, datastores, bridge, path to the Kairos ISO |
+| `variables.tf` | host, datastores, bridge, ISO names |
 | `data.tf` | info about the Proxmox host |
 | `main.tf` | every VM, one block each |
 | `backend.tf` | where state lives |
 | `outputs.tf` | what comes back after an apply |
 
 `main.tf` is one block per machine instead of a `for_each` over a map. That
-makes it long, about 550 lines, and changing something shared like the bridge
-means nine edits. I did it that way because I can read a whole machine in one
+makes it long, about 575 lines, and changing something shared like the bridge
+means ten edits. I did it that way because I can read a whole machine in one
 place without jumping around, which matters more to me right now. If this ever
 grows past twenty VMs the map version is probably better.
 
@@ -71,10 +84,11 @@ One thing that caught me out: Terraform keys state on the resource address, so
 renaming `cp_01` to `kairos_cp` looks like "destroy one machine, build another"
 unless you add a `moved` block first. Add it, apply, then delete it.
 
-## The Kairos cluster
+### The Kairos cluster
 
-`main.tf` uploads the ISO and defines the three Kairos VMs. Adding another node
-means copying a block and changing the name, VM ID and tags.
+`main.tf` defines the three Kairos VMs and points the control plane's CD drive
+at the ISO on the datastore. Adding another node means copying a block and
+changing the name, VM ID and tags.
 
 Two things matter:
 
@@ -94,15 +108,16 @@ The full story is in `../experiments/kairos/README.md`.
 
 ## Notes to self
 
-**The ISO is tied to a local file path.** `variables.tf` points at
-`../experiments/kairos/artifacts/`, and `main.tf` hashes the file so a rebuilt
-ISO shows up as a real change instead of being silently skipped. That costs a
-1.2 GB read on every plan and only works on a machine that has the file. If I
-ever want to run this from CI I will need to publish the ISO somewhere and pass
-a digest in as a variable instead.
+**Terraform doesn't manage the Kairos ISO any more.** It used to upload it from
+`../experiments/kairos/artifacts/` and hash the file on every plan, which was a
+1.2 GB read and only worked on a machine that had the build. Now I upload the
+ISO by hand and `trapp_os_iso_file` names it. After a rebuild, upload the new
+file and bump that variable. The `removed` block at the top of `main.tf`
+dropped the old upload from state without deleting it in Proxmox.
 
 **Old ISOs pile up.** The filename has a content hash in it, so every rebuild
-uploads a new file and leaves the old one behind. Clear them out now and then.
+is a new file and the old one stays on the datastore. Clear them out now and
+then.
 
 **State is in Azure**, at `proxmox/terraform.tfstate`. The storage account is
 built by `azure-platform-lab/infra`. Auth is Entra ID through `az login`, so
