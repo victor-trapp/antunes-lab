@@ -17,7 +17,7 @@ output "kairos_iso" {
   value       = "${var.proxmox_iso_datastore}:iso/${var.trapp_os_iso_file}"
 }
 
-# List the VMs and whether Terraform can rebuild them.
+# List the VMs
 output "vms" {
   description = "Every VM in this lab and whether Terraform can rebuild it"
   value = {
