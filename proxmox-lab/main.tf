@@ -10,25 +10,69 @@ resource "proxmox_download_file" "ubuntu_noble" {
   overwrite = false
 }
 
-locals {
-  # Upload a new ISO when its contents change.
-  kairos_iso_name = "trapp-os-v3.6.0-k3s-v1.33.5-${substr(filesha256(var.kairos_iso_source), 0, 8)}.iso"
-}
+# Stop managing the uploaded ISO without deleting it from Proxmox.
+removed {
+  from = proxmox_virtual_environment_file.kairos_iso
 
-# Upload the local Kairos ISO to Proxmox.
-resource "proxmox_virtual_environment_file" "kairos_iso" {
-  content_type = "iso"
-  datastore_id = var.proxmox_iso_datastore
-  node_name    = var.proxmox_node
-
-  overwrite = false
-
-  source_file {
-    path      = var.kairos_iso_source
-    file_name = local.kairos_iso_name
+  lifecycle {
+    destroy = false
   }
 }
 
+resource "proxmox_virtual_environment_vm" "ansible-cp" {
+  name        = "ansible-cp"
+  description = "Ansible Server"
+  tags        = ["ansible", "lab"]
+
+  node_name = var.proxmox_node
+  vm_id     = 106
+
+  bios    = "ovmf"
+  machine = "q35"
+
+  operating_system {
+    type = "l26"
+  }
+
+  cpu {
+    cores = 2
+    type  = "host"
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  efi_disk {
+    datastore_id = var.proxmox_vm_datastore
+    type         = "4m"
+  }
+
+  disk {
+    datastore_id = var.proxmox_vm_datastore
+    interface    = "scsi0"
+    size         = 40
+    discard      = "on"
+    iothread     = true
+  }
+
+  scsi_hardware = "virtio-scsi-single"
+
+  boot_order = ["scsi0"]
+
+  network_device {
+    bridge = var.proxmox_bridge
+  }
+
+  started         = false
+  stop_on_destroy = true
+  on_boot         = false
+
+  cdrom {
+    file_id = "${var.proxmox_iso_datastore}:iso/${var.ubuntu_iso_source}"
+  }
+
+}
 # Create the Kairos control plane with the install ISO.
 resource "proxmox_virtual_environment_vm" "kairos_cp" {
   name        = "kairos-cp"
@@ -70,7 +114,7 @@ resource "proxmox_virtual_environment_vm" "kairos_cp" {
   scsi_hardware = "virtio-scsi-single"
 
   cdrom {
-    file_id = proxmox_virtual_environment_file.kairos_iso.id
+    file_id = "${var.proxmox_iso_datastore}:iso/${var.trapp_os_iso_file}"
   }
 
   # Boot from disk first to avoid reinstalling.

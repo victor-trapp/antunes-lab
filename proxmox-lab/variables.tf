@@ -33,13 +33,15 @@ variable "proxmox_bridge" {
   default     = "vmbr0"
 }
 
-variable "kairos_iso_source" {
-  description = "Local path to the AuroraBoot-built Kairos ISO, uploaded to Proxmox on apply"
+variable "trapp_os_iso_file" {
+  description = "trapp-os (Kairos) ISO already present on the Proxmox ISO datastore"
   type        = string
-  default     = "../experiments/kairos/artifacts/kairos-ubuntu-24.04-standard-amd64-generic-v3.6.0-k3sv1.33.5+k3s1.iso"
-
-  validation {
-    condition     = fileexists(var.kairos_iso_source)
-    error_message = "Kairos ISO not found at ${var.kairos_iso_source}. Build it first: cd ../experiments/kairos && ./build.sh. If a rebuild is running, wait for it to finish."
-  }
+  default     = "trapp-os-v3.6.0-k3s-v1.33.5-92e4a0a6.iso"
 }
+
+variable "ubuntu_iso_source" {
+  description = "Local path to the ubuntu ISO, uploaded to Proxmox on apply"
+  type        = string
+  default     = "ubuntu-24.04.2-live-server-amd64.iso"
+}
+
