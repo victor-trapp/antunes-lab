@@ -1,0 +1,9 @@
+- name: Install Beszel hub on the Ansible host
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    hub_version: v0.21.0     # pin the version; "latest" re-downloads on every run
+    hub_port: 8090
+  roles:
+    - community.beszel.hub
